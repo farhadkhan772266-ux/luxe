@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUXE Pakistan | Premium Clothing Store</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+:root{
+ --bg:#08090c;--card:#11141a;--card2:#171b23;--text:#f7f7f8;--muted:#9da4b1;
+ --accent:#e6395f;--accent2:#ff6b86;--green:#20c997;--gold:#f4c95d;
+ --border:rgba(255,255,255,.09);--shadow:0 25px 70px rgba(0,0,0,.42);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+body.lock{overflow:hidden}
+button,input,select{font:inherit} button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+img{display:block;width:100%;object-fit:cover}
+.container{width:min(1400px,92%);margin:auto}
+.navbar{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:18px 4%;display:flex;align-items:center;justify-content:space-between;gap:20px;background:rgba(8,9,12,.55);backdrop-filter:blur(18px);border-bottom:1px solid transparent;transition:.35s}
+.navbar.scrolled{background:rgba(8,9,12,.94);border-color:var(--border);padding-top:12px;padding-bottom:12px}
+.logo{font:800 1.65rem Syne;letter-spacing:2px}.logo span{color:var(--accent)}
+.navlinks{display:flex;gap:25px;list-style:none}.navlinks a{color:#b9bec9;font-size:.9rem;transition:.25s}.navlinks a:hover{color:#fff}
+.navactions{display:flex;align-items:center;gap:10px}.iconbtn{width:42px;height:42px;border:1px solid var(--border);background:#ffffff08;color:#fff;border-radius:50%;position:relative}
+.iconbtn:hover{background:var(--accent);transform:translateY(-2px)}
+.badge{position:absolute;top:-4px;right:-3px;background:var(--accent);width:19px;height:19px;border-radius:50%;font-size:10px;display:grid;place-items:center;font-weight:800}
+.hero{min-height:100vh;padding:150px 4% 90px;display:flex;align-items:center;position:relative;isolation:isolate;overflow:hidden;background:
+linear-gradient(90deg,rgba(8,9,12,.97) 0%,rgba(8,9,12,.72) 43%,rgba(8,9,12,.25)),url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=85&w=2200') center/cover}
+.hero:before{content:"";position:absolute;width:550px;height:550px;border-radius:50%;background:#e6395f22;filter:blur(80px);right:-150px;top:10%;z-index:-1}
+.heroContent{max-width:720px}.eyebrow{color:var(--accent2);letter-spacing:4px;font-size:.78rem;font-weight:800;text-transform:uppercase;margin-bottom:18px}
+.hero h1{font:800 clamp(3.1rem,7vw,6.5rem)/.93 Syne;letter-spacing:-3px;margin-bottom:25px}
+.hero h1 span{color:var(--accent)}
+.hero p{color:#c2c7d0;line-height:1.8;max-width:620px;font-size:1.05rem}
+.heroBtns{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}
+.btn{border:0;border-radius:14px;padding:14px 23px;font-weight:800;display:inline-flex;gap:10px;align-items:center;justify-content:center;transition:.3s}
+.btnPrimary{background:var(--accent);color:#fff;box-shadow:0 15px 40px #e6395f35}.btnPrimary:hover{transform:translateY(-4px);background:var(--accent2)}
+.btnGhost{background:#ffffff0c;color:#fff;border:1px solid var(--border)}.btnGhost:hover{background:#fff;color:#111}
+.stats{display:flex;gap:34px;margin-top:42px}.stat strong{font-size:1.5rem}.stat span{display:block;color:var(--muted);font-size:.72rem;margin-top:4px}
+.section{padding:90px 0}.sectionHead{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:35px}.sectionHead h2{font:800 clamp(2rem,4vw,3.2rem) Syne}.sectionHead p{color:var(--muted);max-width:560px;line-height:1.7}
+.categories{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.cat{height:330px;border-radius:22px;overflow:hidden;position:relative;border:1px solid var(--border);cursor:pointer}.cat img{height:100%;transition:.6s}.cat:hover img{transform:scale(1.08)}.cat:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 25%,#000c)}.catText{position:absolute;z-index:2;bottom:24px;left:24px}.catText small{color:#ddd}.catText h3{font-size:1.55rem;margin-top:5px}
+.shopbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}.search{flex:1;min-width:220px;position:relative}.search input{width:100%;background:var(--card);border:1px solid var(--border);color:#fff;padding:14px 45px;border-radius:13px;outline:none}.search i{position:absolute;left:16px;top:16px;color:var(--muted)}
+.filter{background:var(--card);border:1px solid var(--border);color:#fff;padding:13px 15px;border-radius:13px;outline:none}.filter option{background:#111}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:30px}.chip{background:#ffffff08;color:#bfc4ce;border:1px solid var(--border);padding:9px 14px;border-radius:999px}.chip.active,.chip:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.product{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;position:relative;transition:.35s}.product:hover{transform:translateY(-8px);box-shadow:var(--shadow);border-color:#ffffff20}
+.pic{height:330px;position:relative;overflow:hidden;background:#171a20}.pic img{height:100%;transition:.5s}.product:hover .pic img{transform:scale(1.06)}
+.tag{position:absolute;top:12px;left:12px;background:var(--accent);padding:6px 9px;border-radius:7px;font-size:.68rem;font-weight:800}.wish{position:absolute;top:12px;right:12px;width:36px;height:36px;border:0;border-radius:50%;background:#0009;color:#fff}.wish.liked{color:#ff5575;background:#fff}
+.productInfo{padding:16px}.productCat{font-size:.67rem;color:var(--muted);text-transform:uppercase;letter-spacing:1.4px}.product h3{font-size:.98rem;margin:6px 0 9px}.rating{font-size:.74rem;color:var(--gold)}.rating span{color:var(--muted)}.price{display:flex;align-items:center;gap:9px;margin-top:10px}.price strong{font-size:1.1rem}.old{text-decoration:line-through;color:#777;font-size:.78rem}.add{width:100%;margin-top:13px;border:1px solid var(--border);background:#fff;color:#111;border-radius:10px;padding:11px;font-weight:800;transition:.25s}.add:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.loadmore{text-align:center;margin-top:35px}.empty{text-align:center;padding:60px;color:var(--muted);grid-column:1/-1}
+.promo{border:1px solid var(--border);border-radius:25px;padding:45px;background:linear-gradient(110deg,#e6395f18,#ffffff05);display:flex;align-items:center;justify-content:space-between;gap:25px}.promo h2{font:800 2rem Syne}.promo p{color:var(--muted);margin-top:8px}
+footer{border-top:1px solid var(--border);padding:60px 0 25px;background:#050609}.footergrid{display:grid;grid-template-columns:2fr 1fr 1fr 1.4fr;gap:35px}.footergrid h4{margin-bottom:16px}.footergrid ul{list-style:none}.footergrid li{margin:10px 0;color:var(--muted);font-size:.9rem}.footergrid p{color:var(--muted);line-height:1.8;max-width:380px;margin-top:14px}.copy{border-top:1px solid var(--border);margin-top:35px;padding-top:20px;text-align:center;color:#707681;font-size:.8rem}
+.overlay{position:fixed;inset:0;background:#000b;z-index:2000;display:none;align-items:center;justify-content:center;padding:20px}.overlay.show{display:flex}.modal{width:min(900px,100%);max-height:92vh;overflow:auto;background:#101319;border:1px solid var(--border);border-radius:24px;box-shadow:var(--shadow);animation:pop .3s ease}
+.modalHead{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}.modalHead h2{font:800 1.4rem Syne}.close{background:#ffffff0c;border:0;color:#fff;width:38px;height:38px;border-radius:50%}
+.cartList{padding:18px 24px}.cartItem{display:grid;grid-template-columns:75px 1fr auto;gap:14px;align-items:center;padding:13px 0;border-bottom:1px solid var(--border)}.cartItem img{height:80px;border-radius:10px}.cartItem h4{font-size:.9rem}.cartItem small{color:var(--muted)}.qty{display:flex;align-items:center;gap:8px;margin-top:8px}.qty button{width:26px;height:26px;border:1px solid var(--border);background:#ffffff08;color:#fff;border-radius:6px}.remove{border:0;background:none;color:#ff6680}.cartFoot{padding:20px 24px;border-top:1px solid var(--border)}.total{display:flex;justify-content:space-between;font-size:1.15rem;font-weight:800;margin-bottom:15px}
+.checkout{display:grid;grid-template-columns:1.15fr .85fr;gap:22px;padding:24px}.form{display:grid;gap:12px}.form label{font-size:.75rem;color:#aab0bb}.form input,.form select,.form textarea{width:100%;margin-top:6px;background:#090b0f;color:#fff;border:1px solid var(--border);padding:13px;border-radius:10px;outline:none}.form textarea{min-height:85px;resize:vertical}.payMethods{display:grid;gap:10px;margin-top:8px}.pay{border:1px solid var(--border);padding:13px;border-radius:12px;background:#ffffff05;display:flex;gap:12px;align-items:center}.pay input{width:auto}.pay strong{font-size:.9rem}.summary{background:#0b0d11;border:1px solid var(--border);border-radius:15px;padding:18px;height:max-content}.summary h3{margin-bottom:15px}.summaryRow{display:flex;justify-content:space-between;padding:9px 0;color:#aeb4bf;font-size:.86rem}.summaryRow.total2{color:#fff;font-weight:800;border-top:1px solid var(--border);margin-top:8px;padding-top:15px}
+.success{text-align:center;padding:60px 30px}.success .check{width:80px;height:80px;border-radius:50%;background:#20c99722;color:var(--green);display:grid;place-items:center;font-size:2rem;margin:0 auto 20px}.success h2{font:800 2rem Syne}.success p{color:var(--muted);line-height:1.7;margin:12px auto 25px;max-width:500px}
+.toast{position:fixed;right:25px;bottom:25px;background:#fff;color:#111;padding:14px 18px;border-radius:12px;font-weight:800;z-index:4000;transform:translateY(100px);opacity:0;transition:.3s;box-shadow:var(--shadow)}.toast.show{transform:none;opacity:1}
+.reveal{opacity:0;transform:translateY(35px);transition:.8s}.reveal.visible{opacity:1;transform:none}
+@keyframes pop{from{opacity:0;transform:scale(.95) translateY(15px)}to{opacity:1;transform:none}}
+@media(max-width:1050px){.grid{grid-template-columns:repeat(3,1fr)}.categories{grid-template-columns:repeat(2,1fr)}.footergrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){.navlinks{display:none}.hero{padding-top:130px}.hero h1{letter-spacing:-1px}.stats{gap:18px}.grid{grid-template-columns:repeat(2,1fr);gap:12px}.pic{height:260px}.section{padding:65px 0}.checkout{grid-template-columns:1fr}.promo{display:block}.promo .btn{margin-top:20px}.footergrid{grid-template-columns:1fr}.categories{grid-template-columns:1fr 1fr}.cat{height:260px}}
+@media(max-width:480px){.grid{grid-template-columns:1fr 1fr}.pic{height:220px}.productInfo{padding:11px}.product h3{font-size:.82rem}.hero h1{font-size:3rem}.categories{grid-template-columns:1fr}.cat{height:300px}.stats{display:grid;grid-template-columns:repeat(3,1fr)}.stats strong{font-size:1.1rem}.stats span{font-size:.6rem}}
+
+.storeStrip{display:flex;gap:9px;overflow-x:auto;padding:3px 2px 12px;margin-bottom:15px;scrollbar-width:thin}.storeChip{flex:0 0 auto;border:1px solid var(--border);background:#ffffff08;color:#d6dae2;padding:11px 16px;border-radius:12px;font-weight:800;font-size:.78rem;transition:.25s}.storeChip:hover,.storeChip.active{background:var(--accent);border-color:var(--accent);color:#fff;transform:translateY(-2px);box-shadow:0 8px 25px #e6395f25}.resultsMeta{display:flex;gap:8px;color:var(--muted);font-size:.78rem;margin:0 0 18px}.product{animation:cardIn .45s ease both}.product:nth-child(2n){animation-delay:.04s}.product:nth-child(3n){animation-delay:.08s}.productInfo{min-height:190px}.productStore{display:inline-flex;align-items:center;gap:5px;color:#fff;background:#ffffff0b;border:1px solid var(--border);padding:4px 7px;border-radius:6px;font-size:.62rem;font-weight:800;margin-bottom:5px}.colorDots{display:flex;gap:4px;margin-top:8px}.colorDot{width:11px;height:11px;border-radius:50%;border:1px solid #ffffff55}.quick{position:absolute;left:12px;bottom:12px;right:12px;transform:translateY(12px);opacity:0;border:0;background:#ffffffeF;color:#111;border-radius:9px;padding:9px;font-weight:800;transition:.25s}.product:hover .quick{transform:none;opacity:1}@keyframes cardIn{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:none}}@media(max-width:760px){.productInfo{min-height:175px}}
+</style>
+</head>
+<body>
+<nav class="navbar" id="navbar">
+  <a class="logo" href="#home">LUXE<span>.</span></a>
+  <ul class="navlinks">
+    <li><a href="#home">Home</a></li><li><a href="#categories">Categories</a></li><li><a href="#shop">Collection</a></li><li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="navactions">
+    <button class="iconbtn" id="navSearch" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+    <button class="iconbtn" id="cartOpen" aria-label="Cart"><i class="fa-solid fa-bag-shopping"></i><span class="badge" id="cartCount">0</span></button>
+  </div>
+</nav>
+
+<header class="hero" id="home">
+ <div class="heroContent reveal">
+   <div class="eyebrow">Pakistan • New Season 2026</div>
+   <h1>Style Made<br><span>For You.</span></h1>
+   <p>Premium everyday fashion for Pakistan. Explore 350+ Pakistani fashion styles across multiple stores, with summer, winter, eastern, western, footwear and accessories collections.</p>
+   <div class="heroBtns"><a class="btn btnPrimary" href="#shop">Shop Collection <i class="fa-solid fa-arrow-right"></i></a><a class="btn btnGhost" href="#categories">Explore Categories</a></div>
+   <div class="stats"><div><strong>350+</strong><span>Products</span></div><div><strong>PKR</strong><span>Local Pricing</span></div><div><strong>COD</strong><span>Available</span></div></div>
+ </div>
+</header>
+
+<main>
+<section class="section container reveal" id="categories">
+ <div class="sectionHead"><div><div class="eyebrow">Shop by season</div><h2>Find Your Fit</h2></div><p>Summer and winter collections are separated so customers can quickly find the right clothes. Accessories and footwear are included too.</p></div>
+ <div class="categories">
+  <div class="cat" data-filter="Summer"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=900"><div class="catText"><small>Fresh & light</small><h3>Summer</h3></div></div>
+  <div class="cat" data-filter="Winter"><img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?q=80&w=900"><div class="catText"><small>Warm layers</small><h3>Winter</h3></div></div>
+  <div class="cat" data-filter="Shirts"><img src="https://images.unsplash.com/photo-1603252110481-7ba873bf42ab?q=80&w=900"><div class="catText"><small>Everyday & premium</small><h3>Shirts</h3></div></div>
+  <div class="cat" data-filter="Shoes"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=900"><div class="catText"><small>Complete the look</small><h3>Shoes & More</h3></div></div>
+ </div>
+</section>
+
+<section class="section container reveal" id="shop">
+ <div class="sectionHead"><div><div class="eyebrow">200+ styles</div><h2>Our Collection</h2></div><p>Search, filter and sort the collection. Prices are displayed in Pakistani Rupees.</p></div>
+ <div class="shopbar">
+  <div class="search"><i class="fa-solid fa-magnifying-glass"></i><input id="search" placeholder="Search shirts, pants, kurtas, shoes, stores..."></div>
+  <select class="filter" id="store"><option value="All">All Stores</option><option>LUXE</option><option>Khaadi</option><option>Gul Ahmed</option><option>Sapphire</option><option>Limelight</option><option>J.</option><option>Ethnic</option><option>Bonanza Satrangi</option><option>Nishat Linen</option><option>Outfitters</option><option>Breakout</option><option>Ideas</option><option>Generation</option></select>
+  <select class="filter" id="season"><option value="All">All Seasons</option><option>Summer</option><option>Winter</option></select>
+  <select class="filter" id="category"><option value="All">All Categories</option><option>Shirts</option><option>Pants</option><option>Winter</option><option>Shoes</option><option>Hats</option><option>Accessories</option><option>Kurtas</option><option>Shalwar Kameez</option><option>Dresses</option><option>Dupattas</option></select>
+  <select class="filter" id="sort"><option value="featured">Featured</option><option value="low">Price: Low</option><option value="high">Price: High</option><option value="name">Name</option></select>
+ </div>
+ <div class="storeStrip" id="storeStrip">
+  <button class="storeChip active" data-store="All">All Stores</button>
+  <button class="storeChip" data-store="LUXE">LUXE</button><button class="storeChip" data-store="Khaadi">Khaadi</button><button class="storeChip" data-store="Gul Ahmed">Gul Ahmed</button><button class="storeChip" data-store="Sapphire">Sapphire</button><button class="storeChip" data-store="Limelight">Limelight</button><button class="storeChip" data-store="J.">J.</button><button class="storeChip" data-store="Ethnic">Ethnic</button><button class="storeChip" data-store="Bonanza Satrangi">Bonanza Satrangi</button><button class="storeChip" data-store="Nishat Linen">Nishat Linen</button><button class="storeChip" data-store="Outfitters">Outfitters</button><button class="storeChip" data-store="Breakout">Breakout</button><button class="storeChip" data-store="Ideas">Ideas</button><button class="storeChip" data-store="Generation">Generation</button>
+ </div>
+ <div class="chips" id="chips">
+  <button class="chip active" data-cat="All">All</button><button class="chip" data-cat="Shirts">Shirts</button><button class="chip" data-cat="Pants">Pants</button><button class="chip" data-cat="Winter">Winter</button><button class="chip" data-cat="Shoes">Shoes</button><button class="chip" data-cat="Hats">Hats</button><button class="chip" data-cat="Accessories">Accessories</button><button class="chip" data-cat="Kurtas">Kurtas</button><button class="chip" data-cat="Shalwar Kameez">Shalwar Kameez</button><button class="chip" data-cat="Dresses">Dresses</button><button class="chip" data-cat="Dupattas">Dupattas</button>
+ </div>
+ <div class="resultsMeta"><span id="resultCount">0 products</span><span>•</span><span>Pakistan Collection</span></div>
+ <div class="grid" id="products"></div>
+ <div class="loadmore"><button class="btn btnGhost" id="loadMore">Load More Products</button></div>
+</section>
+
+<section class="section container reveal">
+ <div class="promo"><div><div class="eyebrow">Easy ordering</div><h2>Order directly on WhatsApp</h2><p>Need help choosing size or color? Contact us on WhatsApp before ordering.</p></div><a class="btn btnPrimary" href="https://wa.me/923314203748?text=Assalam-o-Alaikum%20LUXE%2C%20I%20want%20to%20ask%20about%20your%20clothing." target="_blank"><i class="fa-brands fa-whatsapp"></i> 0331 4203748</a></div>
+</section>
+</main>
+
+<footer id="contact">
+ <div class="container footergrid">
+  <div><a class="logo" href="#home">LUXE<span>.</span></a><p>Modern Pakistani fashion with seasonal collections, easy ordering and local payment options.</p></div>
+  <div><h4>Shop</h4><ul><li><a href="#shop">Shirts</a></li><li><a href="#shop">Pants</a></li><li><a href="#shop">Winter</a></li><li><a href="#shop">Shoes</a></li></ul></div>
+  <div><h4>Help</h4><ul><li>Order Tracking</li><li>Returns & Exchange</li><li>Size Guide</li><li>Shipping Policy</li></ul></div>
+  <div><h4>Contact</h4><ul><li><a href="tel:+923314203748">0331 4203748</a></li><li><a href="https://wa.me/923314203748" target="_blank">WhatsApp</a></li><li>Pakistan</li></ul></div>
+ </div>
+ <div class="container copy">© 2026 LUXE Pakistan. All rights reserved.</div>
+</footer>
+
+<div class="overlay" id="cartModal">
+ <div class="modal">
+  <div class="modalHead"><h2>Your Cart</h2><button class="close" data-close="cartModal">×</button></div>
+  <div class="cartList" id="cartList"></div>
+  <div class="cartFoot"><div class="total"><span>Total</span><span id="cartTotal">PKR 0</span></div><button class="btn btnPrimary" style="width:100%" id="checkoutBtn">Proceed to Checkout <i class="fa-solid fa-arrow-right"></i></button></div>
+ </div>
+</div>
+
+<div class="overlay" id="checkoutModal">
+ <div class="modal">
+  <div class="modalHead"><h2>Checkout</h2><button class="close" data-close="checkoutModal">×</button></div>
+  <div class="checkout">
+   <form class="form" id="checkoutForm">
+    <div><label>Full Name<input name="name" required placeholder="Your name"></label></div>
+    <div><label>Phone Number<input name="phone" required placeholder="03XX XXXXXXX"></label></div>
+    <div><label>City<input name="city" required placeholder="DG Khan, Lahore, Multan..."></label></div>
+    <div><label>Complete Address<textarea name="address" required placeholder="House / street / area"></textarea></label></div>
+    <div><label>Payment Method</label>
+      <div class="payMethods">
+       <label class="pay"><input type="radio" name="payment" value="Cash on Delivery" checked><i class="fa-solid fa-truck"></i><span><strong>Cash on Delivery</strong><small> Pay when your parcel arrives</small></span></label>
+       <label class="pay"><input type="radio" name="payment" value="JazzCash"><i class="fa-solid fa-mobile-screen-button"></i><span><strong>JazzCash</strong><small> Merchant/API integration ready</small></span></label>
+       <label class="pay"><input type="radio" name="payment" value="Easypaisa"><i class="fa-solid fa-wallet"></i><span><strong>Easypaisa</strong><small> Merchant/API integration ready</small></span></label>
+       <label class="pay"><input type="radio" name="payment" value="Card"><i class="fa-regular fa-credit-card"></i><span><strong>Debit / Credit Card</strong><small> Gateway integration ready</small></span></label>
+      </div>
+    </div>
+    <button class="btn btnPrimary" type="submit">Place Order <i class="fa-solid fa-check"></i></button>
+   </form>
+   <div class="summary"><h3>Order Summary</h3><div id="checkoutSummary"></div></div>
+  </div>
+ </div>
+</div>
+
+<div class="overlay" id="successModal">
+ <div class="modal"><div class="success"><div class="check"><i class="fa-solid fa-check"></i></div><h2>Order Received!</h2><p id="successText">Thank you. Your order has been prepared successfully.</p><a id="whatsappOrder" class="btn btnPrimary" target="_blank"><i class="fa-brands fa-whatsapp"></i> Send Order on WhatsApp</a></div></div>
+</div>
+<div class="toast" id="toast">Added to cart 🛍️</div>
+
+<script>
+const phone="923314203748";
+const img={
+ shirt:["https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800","https://images.unsplash.com/photo-1603252110481-7ba873bf42ab?q=80&w=800","https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=800","https://images.unsplash.com/photo-1562157873-818bc0726f68?q=80&w=800"],
+ pants:["https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=800","https://images.unsplash.com/photo-1473966968600-fa801b869a1a?q=80&w=800","https://images.unsplash.com/photo-1506629905607-d9e31b9e7d8c?q=80&w=800"],
+ winter:["https://images.unsplash.com/photo-1551028719-00167b16eac5?q=80&w=800","https://images.unsplash.com/photo-1548883354-7622d03aca27?q=80&w=800","https://images.unsplash.com/photo-1516762689617-e1cffcef479d?q=80&w=800"],
+ shoes:["https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=800","https://images.unsplash.com/photo-1495555961986-6d4c1ecb7be3?q=80&w=800","https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?q=80&w=800"],
+ hats:["https://images.unsplash.com/photo-1521369909029-2afed882baee?q=80&w=800","https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=800"],
+ accessories:["https://images.unsplash.com/photo-1611923134239-b9be5816e23c?q=80&w=800","https://images.unsplash.com/photo-1523779917675-b6ed3a42a561?q=80&w=800"]
+};
+
+const stores=["LUXE","Khaadi","Gul Ahmed","Sapphire","Limelight","J.","Ethnic","Bonanza Satrangi","Nishat Linen","Outfitters","Breakout","Ideas","Generation"];\nconst products=[];
+const shirtNames=["Classic Oxford Shirt","Premium Cotton Shirt","Urban Oversized Tee","Essential Polo","Linen Casual Shirt","Premium Graphic Tee","Regular Fit Shirt","Textured Casual Shirt","Minimal Black Tee","Relaxed Fit Polo","Denim Shirt","Classic White Shirt","Striped Summer Shirt","Premium Kurta Shirt","Casual Check Shirt","Soft Cotton Tee","Streetwear Logo Tee","Smart Casual Shirt","Slim Fit Polo","Everyday Basic Tee"];
+const pantNames=["Classic Chino Pants","Relaxed Cargo Pants","Straight Fit Denim","Premium Black Trousers","Cotton Joggers","Urban Cargo","Classic Khaki Pants","Wide Leg Trousers","Slim Fit Denim","Everyday Track Pants","Textured Chino","Dark Blue Jeans","Comfort Joggers","Utility Pants","Smart Casual Trousers"];
+const winterNames=["Classic Puffer Jacket","Premium Hoodie","Heavyweight Sweatshirt","Wool Blend Coat","Quilted Jacket","Fleece Hoodie","Sherpa Jacket","Varsity Jacket","Winter Bomber","Cable Knit Sweater","Premium Cardigan","Warm Overshirt","Puffer Vest","Fleece Pullover","Classic Trench Coat"];
+const shoeNames=["Street Runner Sneakers","Classic White Sneakers","Urban High Tops","Everyday Trainers","Premium Casual Shoes","Sport Lifestyle Shoes","Canvas Sneakers","Classic Loafers","Minimal Slip Ons","Chunky Sneakers"];
+const hatNames=["Classic Baseball Cap","Premium Cotton Cap","Urban Snapback","Minimal Dad Cap","Winter Beanie","Classic Bucket Hat","Logo Cap","Corduroy Cap"];
+const kurtaNames=["Classic Kurta","Premium Cotton Kurta","Embroidered Kurta","Linen Kurta","Festive Kurta","Casual Kurta","Textured Kurta","Signature Kurta","Classic Shalwar Kameez","Premium Shalwar Kameez","Printed Dupatta","Embroidered Dupatta","Lawn 2 Piece","Lawn 3 Piece","Ready To Wear Dress"];\nconst accNames=["Classic Sunglasses","Leather Wallet","Minimal Belt","Premium Backpack","Everyday Watch","Crossbody Bag","Leather Card Holder","Travel Bag","Classic Scarf","Premium Socks"];
+
+function addGroup(names,cat,season,base,type){
+ names.forEach((name,i)=>{
+  for(let j=0;j< (cat==="Shirts"?6:cat==="Pants"?7:cat==="Winter"?5:cat==="Shoes"?2:cat==="Hats"?2:2);j++){
+   let n=i*10+j+1;
+   let price=base+(j*250)+(i%5)*150;
+   let discount=(n%7===0)?Math.round(price*1.18):null;
+   let key=type;
+   products.push({id:products.length+1,name:`${name} ${j+1}`,store:stores[(i+j)%stores.length],cat,season,price,old:discount,rating:(4+(n%10)/10).toFixed(1),img:img[key][j%img[key].length],tag:n%11===0?"NEW":n%9===0?"SALE":"",colors:["#111","#f4f0e8","#6d7b8d"]});
+  }
+ });
+}
+addGroup(shirtNames,"Shirts","Summer",1899,"shirt");
+addGroup(pantNames,"Pants","Summer",2499,"pants");
+addGroup(winterNames,"Winter","Winter",3299,"winter");
+addGroup(shoeNames,"Shoes","Summer",2999,"shoes");
+addGroup(hatNames,"Hats","Summer",999,"hats");
+addGroup(accNames,"Accessories","Summer",799,"accessories");
+addGroup(kurtaNames.slice(0,8),"Kurtas","Summer",2499,"shirt");
+addGroup(kurtaNames.slice(8,10),"Shalwar Kameez","Summer",4499,"shirt");
+addGroup(kurtaNames.slice(10,12),"Dupattas","Summer",1299,"shirt");
+addGroup(kurtaNames.slice(12,15),"Dresses","Summer",3999,"shirt");
+
+let visible=24, cart=[], liked=new Set();
+const productsEl=document.getElementById("products"), searchEl=document.getElementById("search"), seasonEl=document.getElementById("season"), catEl=document.getElementById("category"), sortEl=document.getElementById("sort"), storeEl=document.getElementById("store"), resultCount=document.getElementById("resultCount");
+
+function money(n){return "PKR "+n.toLocaleString("en-PK")}
+function filtered(){
+ let q=searchEl.value.toLowerCase().trim(), season=seasonEl.value, cat=catEl.value, store=storeEl.value;
+ let arr=products.filter(p=>(!q||(p.name+" "+p.cat).toLowerCase().includes(q))&&(season==="All"||p.season===season)&&(cat==="All"||p.cat===cat)&&(store==="All"||p.store===store));
+ if(sortEl.value==="low")arr.sort((a,b)=>a.price-b.price);
+ if(sortEl.value==="high")arr.sort((a,b)=>b.price-a.price);
+ if(sortEl.value==="name")arr.sort((a,b)=>a.name.localeCompare(b.name));
+ return arr;
+}
+function render(){
+ let arr=filtered(), show=arr.slice(0,visible); resultCount.textContent=`${arr.length} products`;
+ productsEl.innerHTML=show.length?show.map(p=>`
+ <article class="product reveal visible">
+  <div class="pic"><img src="${p.img}" alt="${p.name}" loading="lazy">${p.tag?`<span class="tag">${p.tag}</span>`:""}<button class="quick" onclick="addCart(${p.id})"><i class="fa-solid fa-bag-shopping"></i> Quick Add</button><button class="wish ${liked.has(p.id)?"liked":""}" onclick="toggleWish(${p.id})"><i class="fa-${liked.has(p.id)?"solid":"regular"} fa-heart"></i></button></div>
+  <div class="productInfo"><div class="productStore"><i class="fa-solid fa-store"></i> ${p.store}</div><div class="productCat">${p.season} • ${p.cat}</div><h3>${p.name}</h3><div class="rating">★★★★★ <span>${p.rating}</span></div><div class="colorDots">${p.colors.map(c=>`<span class="colorDot" style="background:${c}"></span>`).join("")}</div><div class="price"><strong>${money(p.price)}</strong>${p.old?`<span class="old">${money(p.old)}</span>`:""}</div><button class="add" onclick="addCart(${p.id})"><i class="fa-solid fa-bag-shopping"></i> Add to Cart</button></div>
+ </article>`).join(""):`<div class="empty"><i class="fa-solid fa-shirt" style="font-size:2rem;margin-bottom:12px"></i><br>No products found. Try another search or filter.</div>`;
+ document.getElementById("loadMore").style.display=show.length<arr.length?"inline-flex":"none";
+}
+function addCart(id){
+ let p=products.find(x=>x.id===id), item=cart.find(x=>x.id===id);
+ item?item.qty++:cart.push({...p,qty:1}); updateCart(); toast("Added to cart 🛍️");
+}
+function updateCart(){
+ document.getElementById("cartCount").textContent=cart.reduce((a,b)=>a+b.qty,0);
+ document.getElementById("cartList").innerHTML=cart.length?cart.map(x=>`<div class="cartItem"><img src="${x.img}"><div><h4>${x.name}</h4><small>${x.store} • ${money(x.price)}</small><div class="qty"><button onclick="changeQty(${x.id},-1)">−</button><b>${x.qty}</b><button onclick="changeQty(${x.id},1)">+</button></div></div><button class="remove" onclick="removeCart(${x.id})"><i class="fa-solid fa-trash"></i></button></div>`).join(""):`<div class="empty">Your cart is empty.</div>`;
+ document.getElementById("cartTotal").textContent=money(total());
+ renderSummary();
+}
+function total(){return cart.reduce((a,b)=>a+b.price*b.qty,0)}
+function changeQty(id,n){let x=cart.find(a=>a.id===id);if(!x)return;x.qty+=n;if(x.qty<=0)cart=cart.filter(a=>a.id!==id);updateCart()}
+function removeCart(id){cart=cart.filter(a=>a.id!==id);updateCart()}
+function toggleWish(id){liked.has(id)?liked.delete(id):liked.add(id);render()}
+function renderSummary(){
+ let box=document.getElementById("checkoutSummary");
+ box.innerHTML=cart.length?cart.map(x=>`<div class="summaryRow"><span>${x.name} × ${x.qty}</span><span>${money(x.price*x.qty)}</span></div>`).join("")+`<div class="summaryRow total2"><span>Total</span><span>${money(total())}</span></div>`:`<p style="color:#9da4b1">No items in cart.</p>`;
+}
+function openModal(id){document.getElementById(id).classList.add("show");document.body.classList.add("lock")}
+function closeModal(id){document.getElementById(id).classList.remove("show");if(!document.querySelector(".overlay.show"))document.body.classList.remove("lock")}
+function toast(t){let x=document.getElementById("toast");x.textContent=t;x.classList.add("show");setTimeout(()=>x.classList.remove("show"),1800)}
+
+document.getElementById("cartOpen").onclick=()=>openModal("cartModal");
+document.getElementById("checkoutBtn").onclick=()=>{if(!cart.length)return toast("Cart is empty");closeModal("cartModal");openModal("checkoutModal")};
+document.querySelectorAll("[data-close]").forEach(b=>b.onclick=()=>closeModal(b.dataset.close));
+document.querySelectorAll(".overlay").forEach(o=>o.addEventListener("click",e=>{if(e.target===o)closeModal(o.id)}));
+[searchEl,storeEl,seasonEl,catEl,sortEl].forEach(x=>x.addEventListener("input",()=>{visible=24;render()}));
+document.querySelectorAll(".storeChip").forEach(c=>c.onclick=()=>{document.querySelectorAll(".storeChip").forEach(x=>x.classList.remove("active"));c.classList.add("active");storeEl.value=c.dataset.store;visible=24;render()});
+document.querySelectorAll(".chip").forEach(c=>c.onclick=()=>{document.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));c.classList.add("active");catEl.value=c.dataset.cat;visible=24;render()});
+document.querySelectorAll(".cat").forEach(c=>c.onclick=()=>{document.getElementById("shop").scrollIntoView({behavior:"smooth"});let f=c.dataset.filter;if(f==="Summer"||f==="Winter")seasonEl.value=f;else {seasonEl.value="All";catEl.value=f}visible=24;render()});
+document.getElementById("loadMore").onclick=()=>{visible+=24;render()};
+document.getElementById("navSearch").onclick=()=>{document.getElementById("shop").scrollIntoView({behavior:"smooth"});setTimeout(()=>searchEl.focus(),500)};
+document.getElementById("checkoutForm").addEventListener("submit",e=>{
+ e.preventDefault();if(!cart.length)return;
+ let fd=new FormData(e.target), order="LUXE ORDER%0A%0A";
+ order+=`Name: ${fd.get("name")}%0APhone: ${fd.get("phone")}%0ACity: ${fd.get("city")}%0AAddress: ${fd.get("address")}%0APayment: ${fd.get("payment")}%0A%0AItems:%0A`;
+ cart.forEach(x=>order+=`- ${x.name} x${x.qty} = ${money(x.price*x.qty)}%0A`);
+ order+=`%0ATotal: ${money(total())}`;
+ document.getElementById("successText").textContent=`Thank you ${fd.get("name")}. Your order total is ${money(total())}. For final confirmation, send the order details to LUXE on WhatsApp.`;
+ document.getElementById("whatsappOrder").href=`https://wa.me/${phone}?text=${order}`;
+ cart=[];updateCart();e.target.reset();closeModal("checkoutModal");openModal("successModal");
+});
+window.addEventListener("scroll",()=>document.getElementById("navbar").classList.toggle("scrolled",scrollY>40));
+const observer=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add("visible")),{threshold:.1});
+document.querySelectorAll(".reveal").forEach(e=>observer.observe(e));
+render();updateCart();
+</script>
+</body>
+</html>
