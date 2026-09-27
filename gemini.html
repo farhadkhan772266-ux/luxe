@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUXE — Modern Fashion & Apparel</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- ROOT VARIABLES & RESET --- */
+        :root {
+            --bg-main: #0b0b0d;
+            --bg-card: #141418;
+            --accent: #e23e57;
+            --accent-hover: #ff526c;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0ab;
+            --border: rgba(255, 255, 255, 0.08);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { width: 100%; display: block; object-fit: cover; }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: var(--transition);
+            background: rgba(11, 11, 13, 0.6);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .navbar.scrolled {
+            padding: 1rem 5%;
+            background: rgba(11, 11, 13, 0.95);
+        }
+
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--text-primary);
+        }
+
+        .logo span { color: var(--accent); }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .icon-btn:hover { color: var(--accent); transform: scale(1.1); }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: var(--accent);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            position: relative;
+            background: linear-gradient(to right, rgba(11, 11, 13, 0.9), rgba(11, 11, 13, 0.3)), 
+                        url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070') center/cover no-repeat;
+        }
+
+        .hero-content {
+            max-width: 650px;
+            margin-top: 60px;
+        }
+
+        .hero-subtitle {
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            display: block;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s forwards 0.2s;
+        }
+
+        .hero-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s forwards 0.4s;
+        }
+
+        .hero-desc {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s forwards 0.6s;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 2.5rem;
+            background: var(--accent);
+            color: white;
+            font-weight: 600;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s forwards 0.8s;
+            box-shadow: 0 10px 30px rgba(226, 62, 87, 0.3);
+        }
+
+        .btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(226, 62, 87, 0.5);
+        }
+
+        /* --- CATEGORIES SECTION --- */
+        .section { padding: 8rem 5%; }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.5rem;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            position: relative;
+            height: 400px;
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .category-card img {
+            height: 100%;
+            transition: var(--transition);
+        }
+
+        .category-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .category-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            transition: var(--transition);
+        }
+
+        .category-card:hover .category-overlay {
+            background: linear-gradient(to top, rgba(226, 62, 87, 0.8), transparent);
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* --- PRODUCTS SECTION --- */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .product-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 1rem;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .product-img-box {
+            position: relative;
+            height: 320px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .product-img-box img {
+            height: 100%;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-img-box img {
+            transform: scale(1.05);
+        }
+
+        .product-actions {
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            width: 100%;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-actions {
+            bottom: 0;
+        }
+
+        .action-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: white;
+            color: black;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .action-btn:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        .product-info {
+            padding: 1.2rem 0.5rem 0.5rem;
+        }
+
+        .product-category {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0.4rem 0;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #050507;
+            padding: 5rem 5% 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-desc {
+            color: var(--text-secondary);
+            margin-top: 1rem;
+            max-width: 300px;
+            line-height: 1.6;
+        }
+
+        .footer-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            text-align: center;
+            color: var(--text-secondary);
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+
+        /* --- ANIMATIONS & REVEAL --- */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- TOAST NOTIFICATION --- */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--accent);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 2000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="logo">LUXE<span>.</span></a>
+        <ul class="nav-links">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#categories">Categories</a></li>
+            <li><a href="#products">Collection</a></li>
+            <li><a href="#about">About Us</a></li>
+        </ul>
+        <div class="nav-icons">
+            <button class="icon-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button class="icon-btn">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="cart-count">0</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <span class="hero-subtitle">New Collection 2026</span>
+            <h1 class="hero-title">Redefine Your Everyday Style</h1>
+            <p class="hero-desc">Discover premium streetwear and luxury apparel crafted for ultimate comfort and unmatched aesthetics.</p>
+            <a href="#products" class="btn">Explore Collection <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <!-- CATEGORIES SECTION -->
+    <section class="section reveal" id="categories">
+        <div class="section-header">
+            <h2 class="section-title">Featured Categories</h2>
+        </div>
+        <div class="categories-grid">
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000" alt="Womenswear">
+                <div class="category-overlay">
+                    <h3 class="category-title">Womenswear</h3>
+                </div>
+            </div>
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?q=80&w=1000" alt="Menswear">
+                <div class="category-overlay">
+                    <h3 class="category-title">Menswear</h3>
+                </div>
+            </div>
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1000" alt="Streetwear">
+                <div class="category-overlay">
+                    <h3 class="category-title">Accessories</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS SECTION -->
+    <section class="section reveal" id="products">
+        <div class="section-header">
+            <h2 class="section-title">Trending Arrivals</h2>
+        </div>
+        <div class="products-grid">
+            
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?q=80&w=800" alt="Product">
+                    <div class="product-actions">
+                        <button class="action-btn add-to-cart"><i class="fa-solid fa-bag-shopping"></i></button>
+                        <button class="action-btn"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Outerwear</span>
+                    <h3 class="product-title">Vintage Leather Jacket</h3>
+                    <div class="product-price">$240.00</div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=800" alt="Product">
+                    <div class="product-actions">
+                        <button class="action-btn add-to-cart"><i class="fa-solid fa-bag-shopping"></i></button>
+                        <button class="action-btn"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Streetwear</span>
+                    <h3 class="product-title">Oversized Premium Tee</h3>
+                    <div class="product-price">$65.00</div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="https://images.unsplash.com/photo-1578587018452-892bacefd3f2?q=80&w=800" alt="Product">
+                    <div class="product-actions">
+                        <button class="action-btn add-to-cart"><i class="fa-solid fa-bag-shopping"></i></button>
+                        <button class="action-btn"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Hoodies</span>
+                    <h3 class="product-title">Minimalist Black Hoodie</h3>
+                    <div class="product-price">$110.00</div>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=800" alt="Product">
+                    <div class="product-actions">
+                        <button class="action-btn add-to-cart"><i class="fa-solid fa-bag-shopping"></i></button>
+                        <button class="action-btn"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Apparel</span>
+                    <h3 class="product-title">Urban Black T-Shirt</h3>
+                    <div class="product-price">$45.00</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <a href="#" class="logo">LUXE<span>.</span></a>
+                <p class="footer-desc">Redefining modern apparel with high-end quality, clean aesthetics, and sustainable fashion choices.</p>
+            </div>
+            <div>
+                <h4 class="footer-title">Shop</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Menswear</a></li>
+                    <li><a href="#">Womenswear</a></li>
+                    <li><a href="#">Accessories</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title">Help</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Order Tracking</a></li>
+                    <li><a href="#">Returns & Exchange</a></li>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title">Contact</h4>
+                <ul class="footer-links">
+                    <li><a href="#">support@luxe.com</a></li>
+                    <li><a href="#">+1 234 567 890</a></li>
+                    <li><a href="#">New York, USA</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 LUXE Clothing Co. All rights reserved. Designed for Elegance.
+        </div>
+    </footer>
+
+    <!-- TOAST NOTIFICATION -->
+    <div class="toast" id="toast">Item added to cart! 🛍️</div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            for (let i = 0; i < revealElements.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = revealElements[i].getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    revealElements[i].classList.add('active');
+                }
+            }
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Trigger once on load
+
+        // Cart Counter & Toast System
+        let cartCount = 0;
+        const cartBadge = document.querySelector('.cart-count');
+        const addCartButtons = document.querySelectorAll('.add-to-cart');
+        const toast = document.getElementById('toast');
+
+        addCartButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                cartCount++;
+                cartBadge.textContent = cartCount;
+
+                // Show Toast
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>
